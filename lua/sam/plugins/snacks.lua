@@ -2,9 +2,12 @@
 return {
 	{
 		"folke/snacks.nvim",
+		lazy = false,
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		---@type snacks.Config
 		opts = {
 			explorer = {
+				enabled = true,
 				replace_netrw = true,
 			},
 			picker = {

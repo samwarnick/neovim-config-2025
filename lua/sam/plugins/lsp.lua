@@ -16,6 +16,11 @@ return {
 			lspconfig_defaults.capabilities,
 			require("cmp_nvim_lsp").default_capabilities()
 		)
+		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+		end
 
 		-- This is where you enable features that only work
 		-- if there is a language server active in the file
