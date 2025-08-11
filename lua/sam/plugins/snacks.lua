@@ -10,9 +10,9 @@ return {
     picker = {
       sources = {
         explorer = {
-		layout = { layout = {position = "right"}},
-		follow_files = true,
-		auto_close = false
+					layout = { layout = {position = "right"}},
+					follow_files = true,
+					auto_close = false
         }
       }
     }
