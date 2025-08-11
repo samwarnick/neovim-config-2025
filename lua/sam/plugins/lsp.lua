@@ -101,15 +101,27 @@ return {
 				{ name = "nvim_lsp" },
 			},
 			mapping = cmp.mapping.preset.insert({
-				-- `Enter` key to confirm completion
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-				-- Ctrl+Space to trigger completion menu
-				["<C-Space>"] = cmp.mapping.complete(),
-
-				-- Scroll up and down in the completion documentation
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
+				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+				["<C-e>"] = cmp.mapping.abort(), -- close completion window
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<Tab>"] = cmp.mapping(function(fallback)
+					-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+					if cmp.visible() then
+						local entry = cmp.get_selected_entry()
+						if not entry then
+							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+						end
+						cmp.confirm()
+					else
+						fallback()
+					end
+				end, { "i", "s", "c" }),
 			}),
 			snippet = {
 				expand = function(args)
