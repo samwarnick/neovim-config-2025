@@ -10,9 +10,15 @@ return {
     picker = {
       sources = {
         explorer = {
+		layout = { layout = {position = "right"}},
+		follow_files = true,
+		auto_close = false
         }
       }
     }
+  },
+  keys = {
+    { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
   }
 }
 }
