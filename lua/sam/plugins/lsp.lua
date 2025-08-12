@@ -105,6 +105,32 @@ return {
 			capabilities = capabilities,
 			filetypes = filetypes,
 		})
+
+		-- Function to restart css_variables language server
+		local function restart_css_variables_lsp()
+			local clients = vim.lsp.get_clients({ name = "css_variables" })
+			for _, client in ipairs(clients) do
+				vim.lsp.stop_client(client.id, true)
+			end
+			-- Small delay to ensure client is stopped before restarting
+			vim.defer_fn(function()
+				vim.cmd("LspStart css_variables")
+			end, 100)
+		end
+
+		-- Auto-restart css_variables LSP when CSS files are saved
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = { "*.css", "*.scss", "*.sass", "*.less" },
+			callback = function()
+				-- Only restart if we're in a CSS-related project
+				local clients = vim.lsp.get_clients({ name = "css_variables" })
+				if #clients > 0 then
+					restart_css_variables_lsp()
+					-- vim.notify("CSS Variables LSP restarted", vim.log.levels.INFO)
+				end
+			end,
+		})
+
 		lspconfig.css_variables.setup({
 			capabilities = capabilities,
 			filetypes = filetypes,
