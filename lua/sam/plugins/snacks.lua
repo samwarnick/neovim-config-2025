@@ -82,6 +82,12 @@ return {
 				end,
 				desc = "Recent",
 			},
+			{
+				"<leader>gg",
+				function()
+					Snacks.lazygit()
+				end,
+			},
 		},
 	},
 }

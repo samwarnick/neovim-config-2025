@@ -17,3 +17,11 @@ keymap.set("n", "<C-j>", "<C-w>j", {})
 keymap.set("n", "<C-k>", "<C-w>k", {})
 keymap.set("n", "<C-h>", "<C-w>h", {})
 keymap.set("n", "<C-l>", "<C-w>l", {})
+
+-- Buffers
+keymap.set("n", "<leader>bw", function()
+	Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
+keymap.set("n", "<leader>bo", function()
+	Snacks.bufdelete.other()
+end, { desc = "Delete Other Buffers" })
