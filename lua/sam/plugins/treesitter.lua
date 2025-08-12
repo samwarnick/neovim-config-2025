@@ -2,8 +2,14 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	dependencies = {
-		"windwp/nvim-ts-autotag",
-		opts = {},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			opts = {},
+		},
+		{
+			"windwp/nvim-ts-autotag",
+			opts = {},
+		},
 	},
 	event = { "BufReadPre" },
 	config = function()
