@@ -12,6 +12,7 @@ opt.smartcase = true
 
 opt.cursorline = true
 opt.scrolloff = 5
+opt.mousescroll = "ver:1"
 
 opt.termguicolors = true
 opt.signcolumn = "yes"
