@@ -19,6 +19,11 @@ return {
 					},
 				},
 			},
+			scroll = {},
+			dashboard = {},
+			indent = {},
+			images = {},
+			lazygit = {},
 		},
 		keys = {
 			{
