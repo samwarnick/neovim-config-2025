@@ -42,6 +42,7 @@ return {
 			end,
 		})
 
+		local css_filetypes = { "css", "scss", "less", "svelte", "vue" }
 		require("mason").setup({})
 		require("mason-lspconfig").setup({
 			handlers = {
@@ -96,6 +97,29 @@ return {
 			},
 		})
 
+		local lspconfig = require("lspconfig")
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local filetypes = { "css", "scss", "less", "svelte", "vue" }
+
+		lspconfig.cssls.setup({
+			capabilities = capabilities,
+			filetypes = filetypes,
+		})
+		lspconfig.css_variables.setup({
+			capabilities = capabilities,
+			filetypes = filetypes,
+			settings = {
+				cssVariables = {
+					lookupFiles = {
+						"**/*.less",
+						"**/*.scss",
+						"**/*.sass",
+						"**/*.css",
+						"**/*.svelte",
+					},
+				},
+			},
+		})
 		---
 		-- Autocompletion config
 		---
